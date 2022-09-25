@@ -1,11 +1,92 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
 .left{
     
     background-color: blue;
     height: 100vh;
     width: 50%;
     margin: 0px;
-    padding: 0px;
-    
-    
-    
+    padding: 0px;     
 }
+.container{
+    display:flex;
+
+}
+.right{
+    margin-top: 270px;
+    line-height: 30px;
+    margin-left: 150px;
+}
+
+.heading{
+    text-align: center;
+    font-size: 35px;
+    font-family: sans-serif;
+    margin-bottom: 36px;
+    color: blue;
+}
+.log-in{
+    display: flex;
+    flex-direction: column;
+    row-gap: 6px;
+}
+#submit-btn{
+    border: none;
+    font-size: 25px;
+    background-color: blue;
+    color: aliceblue;
+    border-radius: 30px;
+
+}
+.box{
+    line-height: 30px;
+    border-radius: 30px;
+    border:1px solid black;
+    outline-color: blue;
+}
+.new_file{
+    padding:5px 10px;
+    background:blue;
+    border:1px solid #00ad2d;
+    position:relative;
+    color:#fff;
+   
+    text-align:center;
+    float:left;
+    cursor:pointer;
+    border-radius:30px;
+}
+.box_hide{
+    position: absolute;
+    z-index: 1000;
+    opacity: 0;
+    cursor: pointer;
+    right: 0;
+    top: 0;
+    height: 100%;
+    font-size: 24px;
+    width: 100%;
+}
+input::placeholder {
+    font-size: 20px;
+    color: black;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }

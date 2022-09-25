@@ -26,6 +26,9 @@ app.get("/",(req,res)=>{
 app.get('/sample_data',(req,res)=>{
     res.send("new page");
 })
+app.get('/template',(req,res)=>{
+    res.sendFile(path.join(__dirname,"../public/email_template.html"))
+})
 // app.post('/form_upload',(req,res)=>{
 //     res.send("your data is uploaded");
 //     const fileData = JSON.parse(fs.readFileSync('cart.json'))

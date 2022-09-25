@@ -6,9 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+<script type="module" src="script.js"></script>
+<script src="https://unpkg.com/read-excel-file@4.0.6/bundle/read-excel-file.min.js"></script>
+<script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+<script type="text/javascript" src="https://oss.sheetjs.com/sheetjs/xlsx.full.min.js"></script>
 </head>
 <body>
+    <div class="container">
 <div class="left"></div>
-<div class="right"></div>
+<div class="right">
+    <div class="heading">Smart Email System</div>
+    <div class="form_data">
+     <form class="log-in" action="" method="post" name="log-in">
+       
+        <input type="text" name="name" placeholder="Enter your name" class="box">
+        <span class="material-icons new_file box">
+            image
+            <input type="file" name="hr_file" placeholder="Upload your Email list" class="box_hide" id="hr_file">
+            </span>
+        
+        <input type="submit" name="submit" value="Submit" id="submit-btn">
+        <div id="preview">Mail List for sending resume
+            <table id="mail-list">
+                
+            </table>
+        </div>
+     </form> 
+    </div>
+</div>
+</div>
 </body>
 </html>
