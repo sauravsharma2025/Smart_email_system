@@ -1,24 +1,60 @@
+let name_input= document.getElementById('name_input').value
 
 var input= document.getElementById('hr_file');
 input.addEventListener('change', function(){
    
     readXlsxFile(input.files[0]).then(function(data){
-       
+       var  arra={};//THIS is storing  data in object
         for(let i=0;i<data.length;i++){
           let tr=document.createElement('tr');
           let td=document.createElement('td');
           let td1=document.createElement('td');
-   
+          let td2=document.createElement('td');
+          td2.id='edit';
+          
         let x= getFirstName(data[i])
-      //  console.log(x[0].name)
-      //  console.log(x[0].email)
-          td.textContent=x[0].name;
+     //creating  object for sendind api
+          td.textContent=capitalize(x[0].name);
           td1.textContent=x[0].email;
+        
+          td2.innerHTML="Edit"
+       
+
           tr.appendChild(td);
           tr.appendChild(td1);
+          tr.appendChild(td2);
+       
+          arra[x[0].name]=x[0].email
+                   td2.addEventListener('click',editing);
+function editing(){
+ let  input_field=document.createElement('input')
+ input_field.type='text';
+ input_field.id='input-field';
+ input_field.value=capitalize(x[0].name);
+ var old_key=x[0].name;
+  td.innerHTML=`<input type="text" value="${capitalize(x[0].name)}" id="${capitalize(x[0].name)}">`
+  document.getElementById('submit-btn').addEventListener('click',update_main);
+  function update_main(){
+    console.log(document.getElementById(input_field.value).value);
+    x[0].name=document.getElementById(input_field.value).value;
+  let xx=x[0].name
+  let source={}
+  source[xx]=x[0].email
+  console.log(source)
+  let updated_array=Object.assign(arra,source)
+  
+  delete updated_array[old_key];
+console.log("46",updated_array)
+//  arra[xx] =document.getElementById(input_field.value).value;
+   
+   
+  }
+  
+}
+
           document.getElementById('mail-list').appendChild(tr)
         }
-      
+        console.log("SK46",arra)
     });
 });
 function getFirstName(arr) {
@@ -39,4 +75,6 @@ function getFirstName(arr) {
     }
     return nameArr;
   }
-  
+  function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+}

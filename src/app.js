@@ -23,8 +23,9 @@ app.use(express.static(staticPath));
 app.get("/",(req,res)=>{
     res.sendFile(path.join(__dirname,"../public/index.html"))
 });
-app.get('/sample_data',(req,res)=>{
-    res.send("new page");
+app.post('/data_send',function(request,response,next){
+  response.send(request.body)
+    
 })
 app.get('/template',(req,res)=>{
     res.sendFile(path.join(__dirname,"../public/email_template.html"))

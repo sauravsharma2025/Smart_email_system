@@ -22,12 +22,12 @@
 <div class="right">
     <div class="heading">Smart Email System</div>
     <div class="form_data">
-     <form class="log-in" action="" method="post" name="log-in">
+     <form class="log-in" action="data_send" method="post" name="log-in"  onsubmit="return false">
        
-        <input type="text" name="name" placeholder="Enter your name" class="box">
+        <input type="text" name="name" placeholder="Enter your name" class="box" id="name_input"> 
         <span class="material-icons new_file box">
             image
-            <input type="file" name="hr_file" placeholder="Upload your Email list" class="box_hide" id="hr_file">
+            <input type="file" name="hr_file" placeholder="Upload your Email list" class="box_hide" id="hr_file" value="">
             </span>
         
         <input type="submit" name="submit" value="Submit" id="submit-btn">
