@@ -7,74 +7,50 @@ input.addEventListener('change', function(){
       
         for(let i=0;i<data.length;i++){
           let tr=document.createElement('tr');
+          tr.className='tr';
           let td=document.createElement('td');
           let td1=document.createElement('td');
+          td1.className='td_email';
           let td2=document.createElement('td');
           td2.id='edit';
         let x= getFirstName(data[i])
      //creating  object for sendind api
           td.textContent=capitalize(x[0].name);
           td1.textContent=x[0].email;
-          td2.innerHTML="Update"
+          td2.innerHTML="Edit"
+       
           tr.appendChild(td);
           tr.appendChild(td1);
           tr.appendChild(td2);
           arra[x[0].name]=x[0].email
                    td2.addEventListener('click',editing);
 function editing(){
-    td2.remove()
+
  let  input_field=document.createElement('input')
  input_field.type='text';
  input_field.id='input-field';
  input_field.value=capitalize(x[0].name);
  var old_key=x[0].name;
   td.innerHTML=`<input type="text" value="${capitalize(x[0].name)}" id="${capitalize(x[0].name)}">`
-  document.getElementById('submit-btn').addEventListener('click',update_main);
-  function update_main(){
-    console.log(document.getElementById(input_field.value).value);
-    x[0].name=document.getElementById(input_field.value).value;
-  let xx=x[0].name
-  let source={}
-  source[xx]=x[0].email
-  let updated_array=Object.assign(arra,source)
-  delete updated_array[old_key];
-
-//creating Preview
-  document.getElementById('name_entered').innerHTML="Name: "+document.getElementById('name_input').value
-  for (let [key, value] of Object.entries(updated_array)) {
-let trElem=document.createElement('tr');
-let tdElem=document.createElement('td');
-let tdElem1=document.createElement('td');
-tdElem.innerText=(key);
-tdElem1.innerText=(value);
-
-trElem.append(tdElem);
-trElem.append(tdElem1);
-   document.getElementById('hr_names').append(trElem);}
- //api generate
- 
-  function postData(){
-    var url='http://127.0.0.1:3000/hr_data';
-   var data=`${JSON.stringify(updated_array)}`;
-  var params={
-       method:"post",
-       headers:{
-           'Content-type':'application/json'
-
-       },
-       body:data
-   }
-   fetch(url,params).then(response=>response.json()).then(data=>console.log(data))
- }
- postData();
-
-console.log("46",updated_array)
-//  arra[xx] =document.getElementById(input_field.value).value;
+  var td4=document.createElement('td');
+  td4.innerText='UPDATE';
+td2.remove();
+tr.appendChild(td4);
+  
+  removeEventListener('click', editing)
+  td4.addEventListener('click',update_me)
+  function update_me(){
+    var name_id=capitalize(x[0].name);
+    td.innerHTML=document.getElementById(name_id).value
+    td4.innerText='Updated'
   }
+
+  
+  
 }
      document.getElementById('mail-list').appendChild(tr)
         }
-        console.log("SK46",arra)
+       
     });
 });
 function getFirstName(arr) {
@@ -124,3 +100,51 @@ window.onclick = function(event) {
   }
 }
 
+document.getElementById('submit-btn').addEventListener('click',update_main);
+
+function update_main(){
+ var hr_data={}
+  var node=document.getElementsByTagName('tr')
+  var node1=document.getElementsByClassName('td_email')
+ for(var j=0;j<node1.length;j++){
+  document.getElementById('name_entered').innerHTML="Name: "+document.getElementById('name_input').value
+ 
+  hr_data[(node[j].firstElementChild).innerText]=node1[j].innerHTML
+  let trElem=document.createElement('tr');
+let tdElem=document.createElement('td');
+let tdElem1=document.createElement('td');
+tdElem.innerText=node[j].firstElementChild.innerHTML
+tdElem1.innerText=node1[j].innerHTML;
+trElem.append(tdElem);
+trElem.append(tdElem1);
+ document.getElementById('hr_names').append(trElem);
+ }
+ document.getElementById('preview_final').addEventListener('click',send_to_temp)
+ function send_to_temp(){
+ localStorage.setItem(document.getElementById('name_input').value,JSON.stringify(hr_data))
+ const options ={
+  method:'post',
+  headers:{
+    'Content-type':'application/json'
+  },
+  body:JSON.stringify(hr_data)
+ };
+ fetch('/hr_data',options).then(response=>{
+  return response.json()
+}).then((data)=>{
+  console.log(data);
+})
+  window.location.assign('http://localhost:3000/create_profile.html')
+
+
+ }
+// let xx=x[0].name
+// let source={}
+// source[xx]=x[0].email
+// let updated_array=Object.assign(arra,source)
+// delete updated_array[old_key];
+
+//api generate
+
+
+}

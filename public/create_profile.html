@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="create_profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+
+<script src="https://unpkg.com/read-excel-file@4.0.6/bundle/read-excel-file.min.js"></script>
+<script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+<script type="text/javascript" src="https://oss.sheetjs.com/sheetjs/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="container">
+<div class="left">
+    <img src="/images/smarty.jpg" width="500" height="400" style="top: 172px;position:relative;left: 64px;">
+</div>
+<div class="right">
+    <div class="heading">Smart Email System</div>
+    <div>
+        <form name="template" class="template_form">
+            <input type="text" name="profile" placeholder="Enter Your Profile i.e Software Developer... ">
+            <input type="number" name="phone" placeholder="Enter Your Contact Number. ">
+            <input type="text" name="qual" placeholder="Enter Your Highest Qualification ">
+            <input type="text" name="skill" placeholder="Enter Your Professional skills  ">
+            <input type="text" name="github" placeholder="Enter Your Github Profile Link ">
+            <input type="text" name="linkdin" placeholder="Enter Your linkdin">
+            <input type="button" name="template" value="Create" id="template">
+        </form>
+    </div>
+
+</div>
+<script>
+    function test(){
+
+console.log('a')
+
+console.log('b')
+
+function fire(mycallback){
+    setTimeout(()=> 
+    console.log('c'),1000)
+
+    mycallback();
+}
+function mycallback(){
+    {
+        setTimeout(()=> 
+    console.log('d'),0)
+    }
+}
+fire(mycallback);
+    setTimeout(()=> 
+    console.log('e'),2000)
+
+
+}
+test()
+</script>

@@ -2,12 +2,17 @@ const express= require('express');
 const multer = require('multer')
 const path = require('path');
 const fs=require('fs');
+const { request } = require('http');
 const app = express();
 app.use(express.json({extended: true}))
 app.set("view engine","hbs"); 
 const staticPath = path.join(__dirname,"../public")
 app.use(express.static(staticPath));
-
+const middleware=(req,res,next) =>{
+    console.log("this is middleware")
+    next();
+}
+middleware
 app.get("/",(req,res)=>{
     res.sendFile(path.join(__dirname,"../public/index.html"))
 });
@@ -15,7 +20,7 @@ app.post('/data_send',function(request,response,next){
   response.send(request.body)
     
 })
-app.get('/template',(req,res)=>{
+app.get('/template',middleware,(req,res)=>{
     res.sendFile(path.join(__dirname,"../public/email_template.html"))
 })
 
@@ -27,8 +32,13 @@ app.post('/form_upload',function(request,response,next){
     
 })
 app.post('/hr_data',(req,res)=>{
-   
-    res.send(req.body);
+    console.log(req.body)
+    const data=req.body;
+    res.json({
+        status:'Success',
+        body:data
+    })
+    res.end();
 })
 //sending api
 app.get('/userapi',(req,res)=>{
@@ -36,9 +46,6 @@ app.get('/userapi',(req,res)=>{
 })
 app.get('/test.js',(req,res)=>{
     res.sendFile(path.join(__dirname,"../public/test.html"))
-})
-app.get('/index1.html',(req,res)=>{
-    res.sendFile(path.join(__dirname,"../public/index1.html"))
 })
 
 const port=3000;
